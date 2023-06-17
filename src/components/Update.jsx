@@ -21,21 +21,19 @@ const Update = (props) => {
     setInputs({ ...inputs, [name]: event.target.value });
   };
 
-  const updatadata = () => {
-    axios
+  const updatadata = async () => {
+    await axios
       .put(`${process.env.REACT_APP_API}/product/${slug}`, {
         name,
         shop,
         price,
         quantity,
       })
-      .then((response) => {
-        alert("อัพเดทสำเร็จ");
-      })
       .catch((err) => alert("อัพเดทไม่สำเร็จ"));
   };
   const submitForm = (event) => {
     updatadata();
+    alert("อัพเดทสำเร็จ");
     navigate("/");
     // .then((res) => {
     //   console.log("eiei");

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     name: "",
     shop: "",
-    price: null,
-    quantity: null,
-    ppq: null,
+    price: "",
+    quantity: "",
   });
 
-  const { name, shop, price, quantity, ppq } = inputs;
+  const { name, shop, price, quantity } = inputs;
   const inputValue = (name) => (event) => {
     console.log(name, "=", event.target.value);
     setInputs({ ...inputs, [name]: event.target.value });
@@ -28,7 +29,7 @@ const CreateProduct = () => {
       })
       .then((res) => {
         alert("บันทึกสำเร็จ");
-        window.location.reload(false);
+        setInputs({ name: "", shop: "", price: "", quantity: "" });
       })
       .catch((error) => {
         alert(error);
